@@ -8,9 +8,9 @@ deta = Deta(DETA_KEY)
 db = deta.Base("connector_db")
 
 
-def insert_user(user_name, user_phone_num, user_work_place, user_id, user_nick, timestamp):
+def insert_user(user_name, user_phone_num, user_work_place, user_id, timestamp):
     """Returns the user on a successful user creation, otherwise raises and error"""
-    return db.put({"key": user_id, "user_name": user_name, "user_phone_num": user_phone_num, "user_work_place": user_work_place, "user_nick":user_nick, "timestamp":timestamp})
+    return db.put({"key": user_id, "user_name": user_name, "user_phone_num": user_phone_num, "user_work_place": user_work_place, "timestamp":timestamp})
 
 def fetch_all_users():
     """Returns a dict of all users"""
