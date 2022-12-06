@@ -23,7 +23,7 @@ def	make_signature():
     global timestamp
     global url
     global uri
-    secret_key = bytes(secret_key, 'UTF-8')
+    secret_key = bytes(secret_key, encoding='utf-8')
     method = "POST"
     message = method + " " + uri + "\n" + timestamp + "\n" + access_key
     message = bytes(message, encoding='utf-8')
