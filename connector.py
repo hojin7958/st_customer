@@ -8,7 +8,9 @@ import time
 
 ## 시간체크
 from datetime import datetime
-now = datetime.now()
+from pytz import timezone
+
+now = datetime.now(timezone('Asia/Seoul'))
 date_time = now.strftime("%Y-%m-%d %H:%M:%S")
 
 ## 세션스테이트 정의    
