@@ -52,7 +52,7 @@ def send_sms(number, contents):
     }
     res = requests.post(url+uri,headers=header,data=json.dumps(data))
     datas=json.loads(res.text)
-    reid=datas['requestId']
+    # reid=datas['requestId']
 
-    print("메시지 전송 상태")
-    print(res.text+"\n")
+    # print("메시지 전송 상태")
+    # print(res.text+"\n")
