@@ -88,6 +88,7 @@ if st.session_state['check_id']==True:
         st.write(
             """
             ### 기본정보를 입력해주세요
+            연락받으실 전화번호 정보가 부정확한 경우 정산이 지연될 수 있습니다  
             """)
 
 
@@ -130,7 +131,7 @@ if st.session_state['check_id']==True:
                 connect_url = "https://bohumcheck.streamlit.app/?branchcode="+str(form_id)
                 msg_content = "[보험커넥트]\n"+date_time+"\n"+"커넥터 접수내역\n"+msg +"\n"+"{}님 전용 접속주소 :\n {}".format(form_name,connect_url)
                 telegrambot.send_telegram(msg_content)
-                # send_sms.send_sms(str(form_phone_num),msg_content)
+                send_sms.send_sms(str(form_phone_num),msg_content)
                 # st.write(base_url)
                 st.success("{}님 보험커넥터 활동을 위한 링크주소 :\n".format(form_name))
                 st.success("{}\n".format(connect_url))
