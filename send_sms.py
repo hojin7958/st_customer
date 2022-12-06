@@ -26,7 +26,7 @@ def	make_signature():
     secret_key = bytes(secret_key, 'UTF-8')
     method = "POST"
     message = method + " " + uri + "\n" + timestamp + "\n" + access_key
-    message = bytes(message, 'UTF-8')
+    message = bytes(message, encoding='utf-8')
     signingKey = base64.b64encode(hmac.new(secret_key, message, digestmod=hashlib.sha256).digest())
     return signingKey
 
