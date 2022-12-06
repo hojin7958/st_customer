@@ -106,7 +106,7 @@ if submit > 0:
         db.insert_user(form_name, form_phone_num,form_howto, branchcode, date_time)
         msg ="이름 : " + form_name +"\n" + "전화번호 : " + form_phone_num +"\n" + "연락방법 : " + form_howto +"\n" +"추천코드 : "+branchcode 
         st.success("입력이 완료되었습니다")
-        st.write(msg)
+        # st.write(msg)
         telegrambot.send_telegram(date_time+"\n"+"보험체크 고객 접수내역\n"+msg)
 
 

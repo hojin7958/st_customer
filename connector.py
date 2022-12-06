@@ -51,7 +51,7 @@ st.write(
     보험커넥트에 커넥터로 회원가입해주셔서 감사합니다  
     최종 승인까지 1~2일 정도 소요될 수 있습니다
     """)
-with st.form("info"):
+with st.form("info", clear_on_submit=True):
     st.write(
         """
         ### 기본정보를 입력해주세요
@@ -110,8 +110,10 @@ if submit > 0:
         db.insert_user(form_name, form_phone_num,form_work,form_id,form_nick, date_time)
         msg = "이름 : " + form_name +"\n" + "전화번호 : " + form_phone_num +"\n" + "근무지 : " + form_work +"\n" + "ID : " + form_id +"\n" + "닉네임 : " + form_nick
         st.success("입력이 완료되었습니다")
-        st.write(msg)
-        telegrambot.send_telegram("[보험커넥트]\n"+date_time+"\n"+"커넥터 접수내역\n"+msg +"\n"+"{}님 전용 접속주소 :\n {}".format(form_name,"https://naver.com"))
+        # st.write(msg)
+        connect_url = "https://bohumcheck.streamlit.app/?branchcode="+str(form_id)
+        msg_content = "[보험커넥트]\n"+date_time+"\n"+"커넥터 접수내역\n"+msg +"\n"+"{}님 전용 접속주소 :\n {}".format(form_name,connect_url)
+        telegrambot.send_telegram(msg_content)
+        send_sms.send_sms(str(form_phone_num),msg_content)
         # st.write(base_url)
 
-# send_sms.send_sms('01030657958','장문테스트')
