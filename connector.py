@@ -51,7 +51,7 @@ st.write(
     보험커넥트에 커넥터로 회원가입해주셔서 감사합니다  
     최종 승인까지 1~2일 정도 소요될 수 있습니다
     """)
-with st.form("info", clear_on_submit=True):
+with st.form("info"):
     st.write(
         """
         ### 기본정보를 입력해주세요
