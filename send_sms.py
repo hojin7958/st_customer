@@ -43,7 +43,7 @@ def send_sms(number, contents):
         "type":"LMS",
         "from":"01030181959",
         "content":contents,
-        "subject":"SENS",
+        "subject":"보험체크",
         "messages":[
             {
                 "to":number,
@@ -54,7 +54,7 @@ def send_sms(number, contents):
     datas=json.loads(res.text)
     print(res.text+"\n")
     print(datas)
-    reid=datas['requestId']
+    # reid=datas['requestId']
 
     print("메시지 전송 상태")
 

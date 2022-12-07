@@ -148,6 +148,4 @@ if st.session_state['check_id']==True:
                 # st.write(base_url)
                 st.success("{}님 보험커넥터 활동을 위한 링크주소 :\n".format(form_name))
                 st.success("{}\n".format(connect_url))
-
-
                 st.balloons()
