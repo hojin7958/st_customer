@@ -142,7 +142,7 @@ if st.session_state['check_id']==True:
                 st.success("입력이 완료되었습니다")
                 # st.write(msg)
                 connect_url = "https://bohumcheck.streamlit.app/?branchcode="+str(form_id)
-                msg_header = "[보험커넥트]\n보험커넥트에 커넥트 회원가입이 완료되었습니다\n 아래 전용 접속주소를 주위 고객분들에게 안내해주세요\n"
+                msg_header = "[보험커넥트]\n보험커넥트에 커넥트 회원가입이 완료되었습니다\n아래 전용 접속주소를 주위 고객분들에게 안내해주세요\n"
                 msg_content = msg_header+date_time+"\n"+"커넥터 가입내역\n"+msg +"\n"+"{}님 전용 접속주소 :\n {}".format(form_name,connect_url)
                 telegrambot.send_telegram(msg_content)
                 send_sms.send_sms(str(form_phone_num),"보험체크", msg_content)
