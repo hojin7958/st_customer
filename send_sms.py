@@ -42,6 +42,7 @@ def send_sms(number, contents):
     data = {
         "type":"LMS",
         "from":"01030181959",
+        "countryCode":"82",
         "content":contents,
         "subject":"보험체크",
         "messages":[
