@@ -32,7 +32,7 @@ def	make_signature():
 
 
 
-def send_sms(number, contents):
+def send_sms(number, subject, contents):
     header = {
     "Content-Type": "application/json; charset=utf-8",
     "x-ncp-apigw-timestamp": timestamp, 
@@ -44,7 +44,7 @@ def send_sms(number, contents):
         "from":"01030181959",
         "countryCode":"82",
         "content":contents,
-        "subject":"보험체크",
+        "subject":subject,
         "messages":[
             {
                 "to":number,
