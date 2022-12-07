@@ -18,7 +18,6 @@ if 'check_id' not in st.session_state:
     st.session_state['check_id'] = False
 
 
-
 ## 파라미터 체크영역 
 params = st.experimental_get_query_params()
 if params:
@@ -64,7 +63,8 @@ with st.form("id_check"):
         """
         ### 개인별 모집 페이지 제작에 필요한 정보입니다  
         ID : 앱 ID로 개별페이지 링크를 제작합니다. ID로 유입된 고객기준으로 정산됩니다  
-        한번 입력된 ID는 변경이 불가능합니다
+        본인임을 식별할 수 있는 고유 ID를 입력해주세요  
+        한글, 숫자, 영문 등 가능 (개별페이지 상단에 ID표기됩니다)
         """)
     form_id = st.text_input("ID를 입력해주세요")
     submit_id = st.form_submit_button("중복ID확인하기")
@@ -97,16 +97,28 @@ if st.session_state['check_id']==True:
         form_name = st.text_input("이름을 입력해주세요")
         form_phone_num = st.text_input("전화번호를 입력해주세요 입력예시) 01012341234")
         form_work = st.text_input("활동방식을 입력해주세요(예. 영업고객, 주변지인, 동료기사)")
+
+
+        col_1, col_2 = st.columns([2,1])
+
+        with col_1:
+            with st.expander("개인정보 수집 및 이용 동의"):
+                st.write("""
+                1. 수집/이용목적 : 보험커넥트에서 제공하는 재화/서비스 관련 상담 및 안내   
+                2. 보유 및 이용기간 : 동의 철회시점까지
+                3. 수집/이용항목 : 재화/서비스 제공을 위한 일반 개인정보                 
+                """)
+        with col_2:
+            form_agree1 = st.checkbox("동의합니다")
         submit = st.form_submit_button("최종제출하기")
 
-
-    if submit > 0:
+    if submit:
 
         ## 폼 유효성 검증
         if db.check_id(form_id)>=1:
             st.error("이미 입력된 ID입니다, 제출하기는 한번만 눌러주세요")
 
-        else: 
+        else:
             if len(form_id)<1:
                 st.error("ID를 입력해주세요")
 
@@ -115,14 +127,13 @@ if st.session_state['check_id']==True:
 
             elif len(form_phone_num)<1:
                 st.error("휴대폰번호를 입력해주세요")
-
             elif len(form_work)<1:
                 st.error("영업방식을 입력해주세요(예. 영업고객, 주변지인, 동료기사)")
-            else:
-                pass
-
-            if len(form_phone_num) != 11:
+            elif len(form_phone_num) != 11:
                 st.error("핸드폰번호를 숫자로 11자리 입력해주세요")
+            elif form_agree1 == False:
+                st.error("개인정보 수집 및 이용에 동의해주세요")
+
             else:
                 with st.spinner('Wait for it...'):
                     time.sleep(2)
@@ -137,3 +148,6 @@ if st.session_state['check_id']==True:
                 # st.write(base_url)
                 st.success("{}님 보험커넥터 활동을 위한 링크주소 :\n".format(form_name))
                 st.success("{}\n".format(connect_url))
+
+
+                st.balloons()
