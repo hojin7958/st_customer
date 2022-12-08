@@ -88,7 +88,17 @@ with st.form("info"):
     '편하신 상담방법을 선택해주세요',
     ('카카오톡', '전화통화'))
 
-    print(form_howto)
+    col_1, col_2 = st.columns([2,1])
+
+    with col_1:
+        with st.expander("개인정보 수집 및 이용 동의"):
+            st.write("""
+            1. 수집/이용목적 : 보험체크에서 제공하는 재화/서비스 관련 상담 및 안내   
+            2. 보유 및 이용기간 : 동의 철회시점까지
+            3. 수집/이용항목 : 재화/서비스 제공을 위한 일반 개인정보                 
+            """)
+    with col_2:
+        form_agree1 = st.checkbox("동의합니다")
 
     submit = st.form_submit_button("입력완료")
 
@@ -99,6 +109,10 @@ if submit > 0:
 
     if len(form_name)<1:
         st.error("이름을 입력해주세요")
+
+    elif form_agree1 == False:
+        st.error("개인정보 수집 및 이용에 동의해주세요")
+
     elif len(form_phone_num)<1:
         st.error("휴대폰번호를 입력해주세요")
     else:

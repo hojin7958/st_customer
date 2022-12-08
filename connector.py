@@ -66,7 +66,7 @@ with st.form("id_check"):
         본인임을 식별할 수 있는 고유 ID를 입력해주세요  
         한글, 숫자, 영문 등 가능 (개별페이지 상단에 ID표기됩니다)
         """)
-    form_id = st.text_input("ID를 입력해주세요")
+    form_id = st.text_input("고유 ID를 입력해주세요")
     submit_id = st.form_submit_button("중복ID확인하기")
 
     if submit_id:
