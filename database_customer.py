@@ -8,7 +8,7 @@ DETA_KEY = st.secrets.deta.DETA_KEY
 # Initialize with a project key
 deta = Deta(DETA_KEY)
 # This is how to create/connect a database
-db = deta.Base("customer_db")
+db = deta.Base("customer")
 
 
 def insert_user(user_name, user_phone_num, user_howto,branchcode, timestamp):
